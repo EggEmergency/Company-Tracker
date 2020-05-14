@@ -1,0 +1,61 @@
+{# Load the tag library #}
+{% load bootstrap4 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+<head>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      $('#myTable').DataTable({
+        "initComplete": function(settings, json){
+          //$('#myTable').removeAttribute("hidden");
+          //$('#myTable').show();
+          $('#myTable').removeClass("invisible");
+        }
+      });
+    });
+  </script>
+</head>
+
+<!--
+Jumbotron with title and brief description
+-->
+<div class="jumbotron jumbotron-fluid text-white" style="background-color: #555555;">
+  <div class="container">
+    <h1 class="display-4 text-center">ReLocate</h1>
+    <p class="lead text-center">Discover the best tech companies to work for in your area.</p>
+  </div>
+</div>
+
+<div class="container">
+  <table id="myTable" class="table table-striped invisible">
+    <thead>
+      <tr>
+        <th scope="col">Company</th>
+        <th scope="col">Website</th>
+        <th scope="col">Glassdoor Rating</th>
+      </tr>
+    </thead>
+    <!--
+    A loop in order to display all of the companies and their corresponding information
+    -->
+    <tbody>
+      {% for company in company_list %}
+      <tr>
+        <td>{{company.name}}</td>
+        <td>{{company.website}}</td>
+        <td>{{company.rating}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
