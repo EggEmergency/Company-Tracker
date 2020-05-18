@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% include "bootstrap_loader.html" %}
+
+  {% include "navbar.html"%}
+  {% include "jumbotron.html" %}
+
+  <div class="container">
+    <div class="row justify-content-center">
+      <h1> About </h1>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-8">
+        <p>
+          <strong>What is the purpose of this site?</strong>
+          <br>
+          To help people find out which companies hire software engineers filtered by their geographic location. Outside of narrowing down companies based on their location, analysis is also performed to help people find interesting companies amongst the crowd.
+          <br>
+          <br>
+          <strong>What was the technology used in creating this site?</strong>
+          <br>
+          The web crawling scripts were written in Python, and the main website is written in Django.
+          <br>
+          <br>
+
+          <strong>Could this be easily expanded to different cities?</strong>
+          <br>
+          It doesn't take much to find information on new cities. For example: The scripts were tested in Ottawa, ON before being ran on San Francisco. However, I don't want to mix all the data together as the algorithm relies on relative scoring. I also imagine that there would be a bias towards valley companies on a lot of sites, so the data will easily get more and more skewed with each city that gets added without following a proper procedure.
+          <br>
+          <br>
+
+          <strong>Were there any interesting results found in analyzing the data?</strong>
+          <br>
+          Please look at the analysis section found <a href="{% url 'analysis' %}">here</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</html>

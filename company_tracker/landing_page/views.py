@@ -10,7 +10,10 @@ def landing(request):
     return render(request, 'landing_page.html', context)
 
 def about(request):
-    return HttpResponse("About section baby")
+    return render(request, 'about.html')
+
+def analysis(request):
+    return render(request, 'analysis.html')
 
 def leaderboards(request):
-    return HttpResponse("LEADERBOARDS section baby")
+    return render(request, 'leaderboards.html')

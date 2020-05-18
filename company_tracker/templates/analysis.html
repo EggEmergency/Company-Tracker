@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% include "bootstrap_loader.html" %}
+
+  {% include "navbar.html"%}
+  {% include "jumbotron.html" %}
+
+  <div class="container">
+    <div class="row justify-content-center">
+      <h1> Analysis </h1>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-8">
+        <p>
+          <strong>Glassdoor Raw Data: First Glimpse</strong>
+          <br>
+          Glassdoor had a lot of companies which were rated on the extreme ends while having a very low review count. Thus, simply sorting the companies by their Glassdoor rating was not effective. Another interesting point to note was that a lot of "popular" companies disproportionately had more salaries reported than interviews or reviews.
+          <br>
+          <br>
+          <strong>Dealing with High Variance</strong>
+          <br>
+          In order to deal with the companies which were rated on the extreme ends with a single digit vote count, a weighted rating system is used. The Glassdoor rating is weighted against the average rating which users have submitted. That is, we took the weighted average of all of the ratings amongst all the companies in our database.
+          <br>
+          <br>
+          Once we have this number, we essentially add 25 votes of the average rating into each company's Glassdoor rating, and compute their new average. The number 25 was used for the sake of example, but this number can be chosen based on how many votes we want to account for. The higher the number, the more votes a company needs in order to compete.
+          <br>
+          <br>
+          Continuing the above example, if the average rating was 2.5, and a company has 5 stars and 30 votes. Then we take 5*30 + 2.5*25 divided by 55 as our new weighted average.
+        </p>
+      </div>
+    </div>
+  </div>
+</html>
