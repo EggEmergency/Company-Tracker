@@ -11,12 +11,8 @@ def landing(request):
             Sum(F('reviewCount'), output_field=FloatField()))
 
     weighting = 25
-
-    if request.method == "POST":
-        weighting = request.data.get('weighting')
-
-    else:
-        pass
+    if "weight" in request.GET:
+        weighting = int(request.GET["weight"])
 
     for comp in allCompanies:
         comp.weightedRating = (comp.rating*comp.reviewCount + weighting*compStat["weightedAvg"])\
@@ -25,6 +21,7 @@ def landing(request):
 
     context = {
         'company_list': allCompanies,
+        'weighting': weighting,
     }
     return render(request, 'landing_page.html', context)
 

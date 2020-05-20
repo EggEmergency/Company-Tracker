@@ -14,38 +14,65 @@
           }
         });
       });
+      function sliderUpdated(val){
+        document.getElementById("weightValue").value = val;
+      }
+      function textboxUpdated(val){
+        document.getElementById("weightingRange").value = val;
+      }
+
     </script>
   </head>
 
   {% include "navbar.html"%}
   {% include "jumbotron.html" %}
 
-  <!--
-  Data table of all the companies
-  -->
+
+
   <div class="container">
-    <table id="myTable" class="table table-striped invisible">
-      <thead>
-        <tr>
-          <th scope="col">Company</th>
-          <th scope="col">Website</th>
-          <th scope="col">Glassdoor Rating</th>
-          <th scope="col">Weighted Rating</th>
-        </tr>
-      </thead>
-      <!--
-      A loop in order to display all of the companies and their corresponding information
-      -->
-      <tbody>
-        {% for company in company_list %}
-        <tr>
-          <td>{{company.name}}</td>
-          <td>{{company.website}}</td>
-          <td>{{company.rating}}</td>
-          <td>{{company.weightedRating | floatformat:2}}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+    <!--
+    Range slider for weighting parameter
+    -->
+    <div class="row">
+      <div class="col-6">
+        <input type="range" class="custom-range" min="0" max="100" id="weightingRange" value="{{weighting}}" oninput="sliderUpdated(this.value);">
+      </div>
+      <div class="col-6">
+        <form action="{% url 'root' %}" method="get">
+          <label for="weightingRange">Weighting Parameter:</label>
+          <input type="text" id="weightValue" name="weight" value="{{weighting}}" size="5" style="text-align: center" onchange="textboxUpdated(this.value)">
+          <input type="submit" value="Apply Weighting">
+        </form>
+      </div>
+    </div>
+
+    <!--
+      Data table of all the companies
+    -->
+    <div class="row pt-4">
+      <table id="myTable" class="table table-striped invisible">
+        <thead>
+          <tr>
+            <th scope="col">Company</th>
+            <th scope="col">Website</th>
+            <th scope="col">Glassdoor Rating</th>
+            <th scope="col">Weighted Rating</th>
+          </tr>
+        </thead>
+        <!--
+        A loop in order to display all of the companies and their corresponding information
+        -->
+        <tbody>
+          {% for company in company_list %}
+          <tr>
+            <td>{{company.name}}</td>
+            <td>{{company.website}}</td>
+            <td>{{company.rating}}</td>
+            <td>{{company.weightedRating | floatformat:2}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
   </div>
 </html>
