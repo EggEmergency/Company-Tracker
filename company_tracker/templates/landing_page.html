@@ -30,6 +30,7 @@
           <th scope="col">Company</th>
           <th scope="col">Website</th>
           <th scope="col">Glassdoor Rating</th>
+          <th scope="col">Weighted Rating</th>
         </tr>
       </thead>
       <!--
@@ -41,6 +42,7 @@
           <td>{{company.name}}</td>
           <td>{{company.website}}</td>
           <td>{{company.rating}}</td>
+          <td>{{company.weightedRating | floatformat:2}}</td>
         </tr>
         {% endfor %}
       </tbody>

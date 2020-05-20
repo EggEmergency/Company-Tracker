@@ -23,4 +23,5 @@ urlpatterns = [
     path('about', landing_page.views.about, name='about'),
     path('analysis', landing_page.views.analysis, name='analysis'),
     path('leaderboards', landing_page.views.leaderboards, name='leaderboards'),
+    path('', landing_page.views.leaderboards, name='leaderboards'),
 ]
