@@ -1,1 +1,1 @@
-web: gunicorn company_tracker.wsgi
+web: gunicorn company_tracker.wsgi --log-file -
