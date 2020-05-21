@@ -9,6 +9,7 @@
     <script>
       $(document).ready(function(){
         $('#myTable').DataTable({
+          "order": [[4, "desc"]],
           "initComplete": function(settings, json){
             $('#myTable').removeClass("invisible");
           }
@@ -27,9 +28,13 @@
   {% include "navbar.html"%}
   {% include "jumbotron.html" %}
 
-
-
   <div class="container">
+    <div class="row px-5 justify-content-center">
+      <h5><strong>What does the weighting parameter do?</strong></h5>
+      <p>
+        The higher this number is, the more votes a company needs to rank higher on the charts. For example: at 10, we see Harness at the number 1 spot - but at 25, Zynga is ranked 1. Try setting it yourself to see the results.
+      </p>
+    </div>
     <!--
     Range slider for weighting parameter
     -->
@@ -56,6 +61,7 @@
             <th scope="col">Company</th>
             <th scope="col">Website</th>
             <th scope="col">Glassdoor Rating</th>
+            <th scope="col">Number of Reviews</th>
             <th scope="col">Weighted Rating</th>
           </tr>
         </thead>
@@ -65,9 +71,10 @@
         <tbody>
           {% for company in company_list %}
           <tr>
-            <td>{{company.name}}</td>
+            <td>{{company.name|title}}</td>
             <td>{{company.website}}</td>
             <td>{{company.rating}}</td>
+            <td>{{company.reviewCount}}</td>
             <td>{{company.weightedRating | floatformat:2}}</td>
           </tr>
           {% endfor %}

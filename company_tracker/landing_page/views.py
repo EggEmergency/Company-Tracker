@@ -10,7 +10,7 @@ def landing(request):
         weightedAvg = Sum(F('rating')*F('reviewCount'), output_field=FloatField()) / 
             Sum(F('reviewCount'), output_field=FloatField()))
 
-    weighting = 25
+    weighting = 10
     if "weight" in request.GET:
         weighting = int(request.GET["weight"])
 

@@ -11,21 +11,41 @@
     </div>
     <div class="row justify-content-center">
       <div class="col-8">
+        <h5><strong>Glassdoor Raw Data: First Glimpse</strong></h5>
         <p>
-          <strong>Glassdoor Raw Data: First Glimpse</strong>
-          <br>
-          Glassdoor had a lot of companies which were rated on the extreme ends while having a very low review count. Thus, simply sorting the companies by their Glassdoor rating was not effective. Another interesting point to note was that a lot of "popular" companies disproportionately had more salaries reported than interviews or reviews.
+          Glassdoor had a lot of companies which were rated on the extreme ends, while having a very low review count. Thus, simply sorting the companies by their Glassdoor rating was not effective. Another interesting point to note was that a lot of popular companies disproportionately had more salaries reported than interviews or reviews.
           <br>
           <br>
-          <strong>Dealing with High Variance</strong>
+          In order to find companies which stand out from the crowd, beyond simply looking at the Glassdoor rating, I tried looking at the ratio between the reported salaries, interviews, and reviews. I essentially tried to find companies which followed a similar trend in having disproportionately more salaries reported relative to the total amount of interactions.
           <br>
+          <br>
+          One of the main motivations for wanting to find another metric to find interesting companies was because I read a few stories about companies enlisting their employees to post fake reviews and ratings. I therefore had my doubts about how robust Glassdoor's rating system is when trying to find smaller companies.
+          <br>
+          <br>
+        </p>
+        <h5><strong>Dealing with High Variance</strong></h5>
+        <p>
           In order to deal with the companies which were rated on the extreme ends with a single digit vote count, a weighted rating system is used. The Glassdoor rating is weighted against the average rating which users have submitted. That is, we took the weighted average of all of the ratings amongst all the companies in our database.
           <br>
           <br>
           Once we have this number, we essentially add 25 votes of the average rating into each company's Glassdoor rating, and compute their new average. The number 25 was used for the sake of example, but this number can be chosen based on how many votes we want to account for. The higher the number, the more votes a company needs in order to compete.
           <br>
           <br>
-          Continuing the above example, if the average rating was 2.5, and a company has 5 stars and 30 votes. Then we take 5*30 + 2.5*25 divided by 55 as our new weighted average.
+          Continuing the above example, if the average rating was 2.5, and a company has 5 stars and 30 votes. Then we take 5*30 + 2.5*25 divided by 55 (which comes out to 3.86) as our new weighted average.
+          <br>
+          <br>
+        </p>
+        <h5><strong>Companies with a disproportionately high reported salary count</strong></h5>
+        <p>
+          As was mentioned earlier, popular companies like Google, Facebook, Amazon, Tesla, etc. had more salaries reported than reviews and interviews. This lead me to believe that we could take a look at salaries reported, compared to reviews and interview count, in order to find companies which compare to these other popular software engineering firms.
+          <br>
+          <br>
+          What was found, however, was that there were a surprising amount of low-rated companies with far more reported salaries relative to reviews and interviews. To understand this, I needed to read the reviews of the company in order to try to better understand the bias in results. My initial hypothesis was that companies like Twitter, Google, and Facebook already a reputation of being great places to work - so people who landed a job at said companies were more excited to share other aspects of the company because they found it more relevant to the discussion.
+          <br>
+          <br>
+          After reading the reviews and looking further into Glassdoor, we see that the opposite also occurs. Low-rated companies receive their rating because people are displeased with their compensation package compared to the amount of work they put in.
+          <br>
+          <br>
         </p>
       </div>
     </div>
