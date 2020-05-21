@@ -53,7 +53,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'company_tracker.urls'
+ROOT_URLCONF = 'company_tracker.company_tracker.urls'
 
 TEMPLATES = [
     {
