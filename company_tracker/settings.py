@@ -76,11 +76,22 @@ WSGI_APPLICATION = 'company_tracker.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
+"""
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'companyinfo',
+        'USER': 'bob',
+        'PASSWORD': 'bob',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
@@ -120,6 +131,8 @@ USE_TZ = True
 
 import django_heroku
 django_heroku.settings(locals())
+
+#STATIC_URL = '/static/'
 """
 # Heroku: Update database configuration from $DATABASE_URL.
 import dj_database_url
