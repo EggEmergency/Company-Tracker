@@ -23,7 +23,7 @@ def landing(request):
     for loc in allLocations:
         locations.append(loc.name)
         
-    geoLocation = locations[0]
+    geoLocation = "San Francisco, CA"
     if "location" in request.GET:
         geoLocation = request.GET["location"]
 
