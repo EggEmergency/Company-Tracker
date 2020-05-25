@@ -93,11 +93,15 @@
         <tbody>
           {% for company in company_list %}
           <tr>
-            <td>{{company.name|title}}</td>
+            <td>{{company.name}}</td>
             <td>{{company.website}}</td>
             <td>{{company.rating}}</td>
             <td>{{company.reviewCount}}</td>
-            <td>{{company.weightedRating | floatformat:2}}</td>
+            {% if company.weightedRating != None %}
+              <td>{{company.weightedRating | floatformat:2}}</td>
+            {% else %}
+              <td>-N/A-</td>
+            {% endif %}
           </tr>
           {% endfor %}
         </tbody>

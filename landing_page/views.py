@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.db.models import F, Sum, FloatField, Count
 
 from .models import Company
+from .models import Location
 
 import re
 import pdb
@@ -17,12 +18,10 @@ We query the database to deliver the data requested by the user.
     b) Weighted rating is calculated for each company
 """
 def landing(request):
-    #allLocations = Company.objects.order_by().values('location').distinct()
-    allLocations = Company.objects.all().annotate(count=Count('location')).order_by('count').values('location').distinct()
-
+    allLocations = Location.objects.all()
     locations = []
     for loc in allLocations:
-        locations.append(loc['location'])
+        locations.append(loc.name)
         
     geoLocation = locations[0]
     if "location" in request.GET:
@@ -30,7 +29,8 @@ def landing(request):
 
     #pdb.set_trace()
 
-    workingCompanies = Company.objects.filter(location__exact=geoLocation)
+    workingCompanies = Location.objects.get(name=geoLocation).companies.all()
+    #pdb.set_trace()
     compStat = workingCompanies.aggregate(
         weightedAvg = Sum(F('rating')*F('reviewCount'), output_field=FloatField()) / 
             Sum(F('reviewCount'), output_field=FloatField()))
@@ -41,10 +41,12 @@ def landing(request):
         weighting = int(request.GET["weight"])
 
     for comp in workingCompanies:
-        comp.weightedRating = (comp.rating*comp.reviewCount + weighting*compStat["weightedAvg"])\
-            / (comp.reviewCount + weighting)
-        pass
-
+        if comp.rating == None or comp.reviewCount == None:
+            comp.weightedRating = None
+        else:
+            comp.weightedRating = (comp.rating*comp.reviewCount + weighting*compStat["weightedAvg"])\
+                / (comp.reviewCount + weighting)
+        
     context = {
         'company_list': workingCompanies,
         'weighting': weighting,
