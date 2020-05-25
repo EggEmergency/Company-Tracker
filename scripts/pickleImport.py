@@ -1,18 +1,19 @@
 import pickle
 from landing_page.models import Company
 
-inFile = open("SanFran.dump", "rb")
+inFile = open("torontoCompanies.dump", "rb")
 parsedCompanies = pickle.load(inFile)
 
-for sfCompany in parsedCompanies:
+for parsedComp in parsedCompanies:
     newCompany = Company()
-    newCompany.name = sfCompany.name.lower()
-    newCompany.website = sfCompany.website.lower()
-    newCompany.reviewCount = sfCompany.reviews
-    newCompany.interviewCount = sfCompany.interviews
-    newCompany.salaryCount = sfCompany.salaries
-    newCompany.recommendedPercent = sfCompany.recommended
-    newCompany.rating = sfCompany.rating
+    newCompany.name = parsedComp.name.lower()
+    newCompany.website = parsedComp.website.lower()
+    newCompany.reviewCount = parsedComp.reviews
+    newCompany.interviewCount = parsedComp.interviews
+    newCompany.salaryCount = parsedComp.salaries
+    newCompany.recommendedPercent = parsedComp.recommended
+    newCompany.rating = parsedComp.rating
+    newCompany.location = parsedComp.location
 
     if newCompany.reviewCount == None:
         newCompany.reviewCount = 0

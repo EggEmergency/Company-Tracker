@@ -7,3 +7,4 @@ class ParsedCompany:
         self.interviews = None
         self.recommended = None
         self.rating = None
+        self.location = None

@@ -35,19 +35,41 @@
         The higher this number is, the more votes a company needs to rank higher on the charts. For example: at 10, we see Harness at the number 1 spot - but at 25, Zynga is ranked 1. Try setting it yourself to see the results.
       </p>
     </div>
+
     <!--
     Range slider for weighting parameter
     -->
     <div class="row">
-      <div class="col-6">
-        <input type="range" class="custom-range" min="0" max="100" id="weightingRange" value="{{weighting}}" oninput="sliderUpdated(this.value);">
-      </div>
-      <div class="col-6">
+      <div class="col-12">
         <form action="{% url 'root' %}" method="get">
-          <label for="weightingRange">Weighting Parameter:</label>
-          <input type="text" id="weightValue" name="weight" value="{{weighting}}" size="5" style="text-align: center" onchange="textboxUpdated(this.value)">
-          <input type="submit" value="Apply Weighting">
-        </form>
+          <div class="row">
+            <div class="col-9">
+              <input type="range" class="custom-range" min="0" max="100" id="weightingRange" value="{{weighting}}" oninput="sliderUpdated(this.value);">
+            </div>
+
+            <div class="col-3" style="text-align: right">
+              <label for="weightingRange">Weighting Parameter:</label>
+              <input type="text" id="weightValue" name="weight" value="{{weighting}}" size="5" style="text-align: center" onchange="textboxUpdated(this.value)">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-6">
+              <label for="inputLocation">Location</label>
+              <select id="inputLocation" name="location" style="text-align: center">
+                {% for loc in locations%}
+                  {% if loc == currentLocation %}
+                    <option selected="selected">{{loc}}</option>
+                  {% else %}
+                    <option>{{loc}}</option>
+                  {% endif %}
+                {% endfor %}
+              </select>
+            </div>
+            <div class="col-6" style="text-align: right">
+              <input type="submit" value="Apply Filter">
+            </div>
+          </div>
       </div>
     </div>
 
