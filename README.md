@@ -1,6 +1,9 @@
 # Company-Tracker
+# Demo
+Feel free to try out the project yourself [here.](http://company-discover.herokuapp.com/)
 # Screenshots
 ![Screenshot of homepage](screenshots/ReLocate.png)
+
 # Background
 We want to look up technology companies based on their geographic location. So long as they hire software engineers in that location, we will add it to the list. For example, Microsoft is headquartered near Seattle, but also has positions available in San Francisco. Therefore, it will show up in a search for San Francisco.
 
@@ -15,3 +18,6 @@ Currently, only the following cities are supported:
 * Toronto, ON - Canada
 * Montréal, QC - Canada
 * San Francisco, CA - United States
+
+# Next Steps
+Scan companies for their job postings
