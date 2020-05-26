@@ -8,3 +8,10 @@ There are a lot of companies which people may not know about. We want to be able
 
 # Parsing HTML
 In order to effectively crawl the internet, BeautifulSoup4 was used. The documentation is already quite robust, so we will not need to discuss it here. (https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
+
+# Cities Supported
+Currently, only the following cities are supported:
+* Ottawa, ON - Canada
+* Toronto, ON - Canada
+* Montréal, QC - Canada
+* San Francisco, CA - United States
